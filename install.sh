@@ -1,5 +1,4 @@
 #!/bin/bash
-# ZSH dotfiles installer — symlinks configs from ~/projs/dotfiles/ (Option B)
 # Run on any machine. Backs up existing configs first.
 set -e
 

@@ -55,7 +55,7 @@ alias gadog='PAGER="less -F -X" git log --all --decorate --oneline --graph'
 alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 
 # =========================================================
-# Hieu's Lab & System Aliases
+# System Aliases
 # =========================================================
 alias remove="sudo dnf remove"
 alias install="sudo dnf install -y"
@@ -104,9 +104,3 @@ alias scdis='sudo systemctl disable'
 alias scdr='sudo systemctl daemon-reload'
 alias sclu='systemctl list-units'
 alias scmask='sudo systemctl mask'
-
-# hermes
-alias hdash="hermes dashboard"
-alias hset="hermes setup"
-alias hmod="hermes model"
-alias hconf="hermes config"
