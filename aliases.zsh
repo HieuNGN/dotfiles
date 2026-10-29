@@ -14,7 +14,12 @@ alias tree='eza --tree --icons'
 compdef eza=ls
 
 # Better cat
-alias cat='bat'
+# bat is `batcat` on Debian; fall back to nothing if neither exists
+if (( $+commands[bat] )); then
+    alias cat='bat'
+elif (( $+commands[batcat] )); then
+    alias cat='batcat'
+fi
 
 # =========================================================
 # Core utilities
@@ -30,15 +35,17 @@ alias df='df -h'
 
 alias -- -='cd -'  # -- prevents - being parsed as a flag; cd - jumps to previous directory
 
-lf() { # zsh follow lf navigation
-    tmp=$(mktemp)
-    command lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir=$(cat "$tmp")
-        rm -f "$tmp"
-        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-    fi
-}
+if (( $+commands[lf] )); then
+    lf() { # zsh follow lf navigation
+        tmp=$(mktemp)
+        command lf -last-dir-path="$tmp" "$@"
+        if [ -f "$tmp" ]; then
+            dir=$(cat "$tmp")
+            rm -f "$tmp"
+            [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+        fi
+    }
+fi
 
 # =========================================================
 # Editor
@@ -57,8 +64,20 @@ alias dotfiles='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 # =========================================================
 # System Aliases
 # =========================================================
-alias remove="sudo dnf remove"
-alias install="sudo dnf install -y"
+# Package manager specific install/remove
+if [ -f /etc/fedora-release ]; then
+    alias install='sudo dnf install -y'
+    alias remove='sudo dnf remove'
+elif [ -f /etc/debian_version ]; then
+    alias install='sudo apt install -y'
+    alias remove='sudo apt remove'
+elif [ -f /etc/arch-release ]; then
+    alias install='sudo pacman -S --noconfirm'
+    alias remove='sudo pacman -R'
+elif [ "$(uname)" = "Darwin" ]; then
+    alias install='brew install'
+    alias remove='brew uninstall'
+fi
 alias reboot="sudo systemctl reboot"
 alias shutdown="sudo systemctl poweroff"
 
@@ -69,17 +88,25 @@ alias myip="curl ifconfig.me"
 # python
 alias py="python"
 alias pya="python3"
-alias ca="conda activate"
-alias cda="conda deactivate"
-alias ce="conda env list"
-alias cj="conda install"
+if (( $+commands[conda] )); then
+    alias ca="conda activate"
+    alias cda="conda deactivate"
+    alias ce="conda env list"
+    alias cj="conda install"
+fi
 alias please="sudo"
 alias cls="clear"
 alias reload="source ~/.config/zsh/.zshrc"
 
 # scripts
-alias update="cd ~/scripts/ && sudo ./fedora-kde-update.sh"
-alias clean="cd ~/scripts/ && sudo ./clean.sh"
+if [ -f /etc/fedora-release ]; then
+    # Fedora: only if the helper scripts are actually present
+    [ -f "$HOME/scripts/fedora-kde-update.sh" ] && alias update="cd ~/scripts/ && sudo ./fedora-kde-update.sh"
+    [ -f "$HOME/scripts/clean.sh" ] && alias clean="cd ~/scripts/ && sudo ./clean.sh"
+elif [ -f /etc/debian_version ]; then
+    alias update='sudo apt update && sudo apt full-upgrade -y'
+    alias clean='sudo apt autoremove -y && sudo apt autoclean'
+fi
 alias pgrs="sudo su - postgres"
 
 # Git stuff
