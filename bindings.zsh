@@ -46,7 +46,7 @@ bindkey '^U' kill-buffer            # Ctrl + U — kill to bol
 bindkey '^K' kill-line              # Ctrl + K — kill to eol
 
 # ---------------------------------------------------------
-# Fuzzy Finder
+# Radley & Fuzzy Finder
 # ---------------------------------------------------------
 
 # Ctrl+F -> fzf file picker

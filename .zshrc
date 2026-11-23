@@ -1,13 +1,14 @@
-# minimal zsh configurations
-# author: HieuNGN
-# References: Radley E. Sidwell-Lewis
+# Powerful but minimal zsh configuration
+# Author: Radley E. Sidwell-Lewis
+# GitHub: https://www.github.com/radleylewis/zsh
+#
 # Uses:
 #   Plugins:      fast-syntax-highlighting, zsh-autosuggestions,
 #                 zsh-history-substring-search, zsh-vi-mode
 #   Prompt:       starship
 #   Navigation:   zoxide, fzf, fd
 #   CLI tools:    eza, bat, nvim, ripgrep
-#   Node:         nvm, npm
+#   Node:         nvm
 
 # =========================================================
 # History
@@ -70,6 +71,18 @@ if [[ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]]; then
   source /opt/homebrew/opt/fzf/shell/completion.zsh
 fi
 
+# macOS / Homebrew (Intel)
+if [[ -f /usr/local/opt/fzf/shell/key-bindings.zsh ]]; then
+  source /usr/local/opt/fzf/shell/key-bindings.zsh
+  source /usr/local/opt/fzf/shell/completion.zsh
+fi
+
+# Arch
+if [[ -f /usr/share/fzf/key-bindings.zsh ]]; then
+  source /usr/share/fzf/key-bindings.zsh
+  source /usr/share/fzf/completion.zsh
+fi
+
 # Ubuntu
 if [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]; then
   source /usr/share/doc/fzf/examples/key-bindings.zsh
@@ -103,7 +116,11 @@ source "$ZDOTDIR/prompt.zsh"
 
 # =========================================================
 
+
 . "$HOME/.local/bin/env"
+
+# Hermes Agent — ensure ~/.local/bin is on PATH
+export PATH="$HOME/.local/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -121,17 +138,19 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 # ssh stuff
+# Auto-add SSH key to systemd agent via KDE askpass
 # (systemd ssh-agent.socket starts the agent at login;
 #  ksshaskpass prompts once and caches via KDE Wallet)
 if [ -n "$SSH_AUTH_SOCK" ] && ! ssh-add -l >/dev/null 2>&1; then
     SSH_ASKPASS=/usr/bin/ksshaskpass SSH_ASKPASS_REQUIRE=force ssh-add ~/.ssh/id_ed25519 2>/dev/null
 fi
 
-# npm
+# npm stuff
 export PATH="$HOME/.npm-global/bin:$PATH"
 
-# opencode
-export PATH="$HOME/.opencode/bin:$PATH"
 
 # Force emacs mode
 bindkey -e
+
+# kilo
+export PATH=/home/cqrtp/.kilo/bin:$PATH
