@@ -87,22 +87,16 @@ echo "→ Symlinking configs..."
 backup "$HOME/.zshenv"
 ln -sf "$SOURCE/.zshenv" "$HOME/.zshenv"
 
-# Modular configs
-FILES=(.zshrc aliases.zsh bindings.zsh fzf.zsh plugins.zsh prompt.zsh starship.toml zshenv.zsh)
+# Modular configs (symlinking is idempotent: re-running re-links the same targets)
+FILES=(.zshrc aliases.zsh bindings.zsh fzf.zsh options.zsh plugins.zsh prompt.zsh starship.toml zshenv.zsh)
 for f in "${FILES[@]}"; do
     backup "$ZDOTDIR/$f"
-    ln -sf "$SOURCE/$f" "$ZDOTDIR/$f"
+    ln -sfn "$SOURCE/$f" "$ZDOTDIR/$f"
 done
 
-# ─── Per-machine zshenv.zsh override ───────────────────────────
-# If a machine-specific zshenv exists in repo, use it instead
-MACHINE_ZSHENV="$SOURCE/hosts/$(hostname)/zshenv.zsh"
-if [ -f "$MACHINE_ZSHENV" ]; then
-    echo "  → Found host-specific zshenv.zsh for $(hostname)"
-    ln -sf "$MACHINE_ZSHENV" "$ZDOTDIR/zshenv.zsh"
-fi
-
 echo "  Done."
+echo "  → Machine-specific aliases live in $ZDOTDIR/hosts.local.zsh (gitignored)."
+echo "    Copy hosts.local.zsh.example and edit it if you need host aliases."
 
 # ─── Install dependencies ──────────────────────────────────────
 echo ""
@@ -189,14 +183,18 @@ clone_plugin "fast-syntax-highlighting" "https://github.com/zdharma-continued/fa
 echo ""
 if [ "$SHELL" != "$(command -v zsh)" ]; then
     echo "→ Current shell: $SHELL"
-    echo "  Change default shell to zsh?"
-    read -p "  [y/N] " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        chsh -s "$(command -v zsh)"
-        echo "  ✓ Default shell changed. Logout/login to apply."
+    if [ -t 0 ]; then
+        echo "  Change default shell to zsh?"
+        read -p "  [y/N] " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            chsh -s "$(command -v zsh)"
+            echo "  ✓ Default shell changed. Logout/login to apply."
+        else
+            echo "  Skipped. Run manually: chsh -s $(command -v zsh)"
+        fi
     else
-        echo "  Skipped. Run manually: chsh -s $(command -v zsh)"
+        echo "  Non-interactive run — skipping chsh. Run manually: chsh -s $(command -v zsh)"
     fi
 else
     echo "→ Default shell already zsh ✓"

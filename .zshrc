@@ -18,28 +18,20 @@ HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTSIZE=100000
 SAVEHIST=100000
 
-setopt APPEND_HISTORY
-setopt SHARE_HISTORY
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_FIND_NO_DUPS
-
 # =========================================================
-# Shell behaviour
+# Shell options
 # =========================================================
 
-setopt AUTOCD
-setopt NOBEEP
-setopt NUMERIC_GLOB_SORT  # sort file10 after file9, not after file
-setopt interactive_comments
+source "$ZDOTDIR/options.zsh"
 
 # =========================================================
 # Smart directory navigation
 # =========================================================
 
-LF_ICONS=$(cat ~/.config/lf/icons | tr '\n' ':')
-export LF_ICONS
+if [ -f "$HOME/.config/lf/icons" ]; then
+    LF_ICONS=$(cat "$HOME/.config/lf/icons" | tr '\n' ':')
+    export LF_ICONS
+fi
 
 # Initialize zoxide
 eval "$(zoxide init zsh)"
@@ -114,43 +106,48 @@ source "$ZDOTDIR/plugins.zsh"
 # Prompt/theme
 source "$ZDOTDIR/prompt.zsh"
 
+# Machine-specific host aliases (gitignored; see hosts.local.zsh.example)
+[ -f "$ZDOTDIR/hosts.local.zsh" ] && source "$ZDOTDIR/hosts.local.zsh"
+
+# =========================================================
+# PATH additions
 # =========================================================
 
-
-. "$HOME/.local/bin/env"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 # Hermes Agent — ensure ~/.local/bin is on PATH
-export PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/cqrtp/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/cqrtp/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/cqrtp/miniconda3/etc/profile.d/conda.sh"
+if [ -f "$HOME/miniconda3/bin/conda" ]; then
+    __conda_setup="$("$HOME/miniconda3/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
     else
-        export PATH="/home/cqrtp/miniconda3/bin:$PATH"
+        if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "$HOME/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="$HOME/miniconda3/bin:$PATH"
+        fi
     fi
+    unset __conda_setup
 fi
-unset __conda_setup
 # <<< conda initialize <<<
 
 # ssh stuff
 # Auto-add SSH key to systemd agent via KDE askpass
 # (systemd ssh-agent.socket starts the agent at login;
 #  ksshaskpass prompts once and caches via KDE Wallet)
-if [ -n "$SSH_AUTH_SOCK" ] && ! ssh-add -l >/dev/null 2>&1; then
-    SSH_ASKPASS=/usr/bin/ksshaskpass SSH_ASKPASS_REQUIRE=force ssh-add ~/.ssh/id_ed25519 2>/dev/null
+if [ -n "$SSH_AUTH_SOCK" ] && [ -f "$HOME/.ssh/id_ed25519" ] && [ -x /usr/bin/ksshaskpass ] && ! ssh-add -l >/dev/null 2>&1; then
+    SSH_ASKPASS=/usr/bin/ksshaskpass SSH_ASKPASS_REQUIRE=force ssh-add "$HOME/.ssh/id_ed25519" 2>/dev/null
 fi
 
 # npm stuff
-export PATH="$HOME/.npm-global/bin:$PATH"
-
+[ -d "$HOME/.npm-global/bin" ] && export PATH="$HOME/.npm-global/bin:$PATH"
 
 # Force emacs mode
 bindkey -e
 
 # kilo
-export PATH=/home/cqrtp/.kilo/bin:$PATH
+[ -d "$HOME/.kilo/bin" ] && export PATH="$HOME/.kilo/bin:$PATH"

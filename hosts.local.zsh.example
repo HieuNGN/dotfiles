@@ -1,0 +1,34 @@
+# ~/.config/zsh/hosts.local.zsh
+#
+# Machine-specific host/lab aliases. Copy this file into place and fill in
+# your own hosts, then reload the shell:
+#
+#   cp ~/.config/zsh/hosts.local.zsh.example ~/.config/zsh/hosts.local.zsh
+#   exec zsh
+#
+# hosts.local.zsh is gitignored — never commit real IPs or hostnames.
+# It is sourced from .zshrc automatically when present.
+
+# --- ssh quick commands (local LAN) ---
+# alias lrig="ssh root@<ip>"
+# alias lm920s="ssh <user>@<ip>"
+
+# --- ssh remote (via Tailscale) ---
+# alias rm920s="ssh <user>@<ip>"
+# alias rxeon="ssh <user>@<ip>"
+
+# --- Wake-on-LAN (local LAN) — wol CLI ---
+# alias wol-m920s="wol -h <broadcast> <mac>"
+# alias wol-amdrig="wol -h <ip> <mac>"
+
+# --- Wake-on-LAN (remote via Tailscale relay) ---
+# alias rwol-amdrig="ssh <relay> 'wakeonlan -i <ip> -p 9 <mac>'"
+
+# --- tailscale exit node ---
+# alias tail-noexit='sudo tailscale set --exit-node='
+# alias tail-exit="sudo tailscale set --exit-node=<node> --exit-node-allow-lan-access=true"
+
+# --- tailscale LAN toggle ---
+# alias tail-lan="sudo tailscale set --accept-routes=false && tailscale ping -c 1 <node>"
+# alias tail-roam="sudo tailscale set --accept-routes=true"
+# alias tail-routes="tailscale debug prefs | grep RouteAll; ip route get <ip> | head -1"
