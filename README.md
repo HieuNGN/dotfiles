@@ -1,43 +1,8 @@
 # ThinkPad // dotfiles
 
-$$
-\Large
-\begin{array}{c@{\qquad}c}
-\begin{array}{l@{\quad}l@{\quad}l}
-\begin{array}{l}
-\color{red}{\mathtt{IIIIIII}}\\
-\color{red}{\quad\mathtt{III}}\\
-\color{red}{\quad\mathtt{III}}\\
-\color{red}{\quad\mathtt{III}}\\
-\color{red}{\quad\mathtt{III}}\\
-\color{red}{\quad\mathtt{III}}\\
-\color{red}{\mathtt{IIIIIII}}
-\end{array}
-&
-\begin{array}{l}
-\color{green}{\mathtt{BBBBBBBB}}\\
-\color{green}{\mathtt{BB}}\qquad\color{green}{\mathtt{BB}}\\
-\color{green}{\mathtt{BB}}\qquad\color{green}{\mathtt{BB}}\\
-\color{green}{\mathtt{BBBBBBBB}}\\
-\color{green}{\mathtt{BB}}\qquad\color{green}{\mathtt{BB}}\\
-\color{green}{\mathtt{BB}}\qquad\color{green}{\mathtt{BB}}\\
-\color{green}{\mathtt{BBBBBBBB}}
-\end{array}
-&
-\begin{array}{l}
-\color{blue}{\mathtt{MM}}\qquad\color{blue}{\mathtt{MM}}\\
-\color{blue}{\mathtt{MMM}}\quad\color{blue}{\mathtt{MMM}}\\
-\color{blue}{\mathtt{MMMM}}\quad\color{blue}{\mathtt{MMMM}}\\
-\color{blue}{\mathtt{MM}}\quad\color{blue}{\mathtt{MMM}}\quad\color{blue}{\mathtt{MM}}\\
-\color{blue}{\mathtt{MM}}\quad\color{blue}{\mathtt{M}}\quad\color{blue}{\mathtt{MM}}\\
-\color{blue}{\mathtt{MM}}\qquad\color{blue}{\mathtt{MM}}\\
-\color{blue}{\mathtt{MM}}\qquad\color{blue}{\mathtt{MM}}
-\end{array}
-\end{array}
-&
-{\Huge\color{gray}{\mathtt{Th}}\overset{\color{red}{\bullet}}{\color{gray}{\imath}}\color{gray}{\mathtt{nkPad}}}
-\end{array}
-$$
+<p align="center">
+  <img alt="IBM in red, green and blue beside a grey ThinkPad wordmark with a red dot over the i" src="assets/brand.svg">
+</p>
 
 <p align="center">
   <img alt="Zsh" src="https://img.shields.io/badge/SHELL-Zsh-161616?style=flat-square">
