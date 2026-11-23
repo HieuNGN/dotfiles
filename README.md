@@ -4,13 +4,35 @@ $$
 \Large
 \begin{array}{c@{\qquad}c}
 \begin{array}{c@{\quad}c@{\quad}c}
-\color{red}{\mathtt{IIIIIII}} & \color{green}{\mathtt{BBBBBBBB}} & \color{blue}{\mathtt{MM\phantom{MMMMM}MM}}\\
-\color{red}{\phantom{II}\mathtt{III}\phantom{II}} & \color{green}{\mathtt{BB\phantom{BBBB}BB}} & \color{blue}{\mathtt{MMM\phantom{MMM}MMM}}\\
-\color{red}{\phantom{II}\mathtt{III}\phantom{II}} & \color{green}{\mathtt{BB\phantom{BBBB}BB}} & \color{blue}{\mathtt{MMMM\phantom{M}MMMM}}\\
-\color{red}{\phantom{II}\mathtt{III}\phantom{II}} & \color{green}{\mathtt{BBBBBBBB}} & \color{blue}{\mathtt{MM\phantom{M}MMM\phantom{M}MM}}\\
-\color{red}{\phantom{II}\mathtt{III}\phantom{II}} & \color{green}{\mathtt{BB\phantom{BBBB}BB}} & \color{blue}{\mathtt{MM\phantom{MM}M\phantom{MM}MM}}\\
-\color{red}{\phantom{II}\mathtt{III}\phantom{II}} & \color{green}{\mathtt{BB\phantom{BBBB}BB}} & \color{blue}{\mathtt{MM\phantom{MMMMM}MM}}\\
-\color{red}{\mathtt{IIIIIII}} & \color{green}{\mathtt{BBBBBBBB}} & \color{blue}{\mathtt{MM\phantom{MMMMM}MM}}
+\begin{array}{c}
+\color{red}{\mathtt{IIIIIII}}\\
+\color{red}{\mathtt{III}}\\
+\color{red}{\mathtt{III}}\\
+\color{red}{\mathtt{III}}\\
+\color{red}{\mathtt{III}}\\
+\color{red}{\mathtt{III}}\\
+\color{red}{\mathtt{IIIIIII}}
+\end{array}
+&
+\begin{array}{c}
+\color{green}{\mathtt{BBBBBBBB}}\\
+\color{green}{\mathtt{BB}}\quad\color{green}{\mathtt{BB}}\\
+\color{green}{\mathtt{BB}}\quad\color{green}{\mathtt{BB}}\\
+\color{green}{\mathtt{BBBBBBBB}}\\
+\color{green}{\mathtt{BB}}\quad\color{green}{\mathtt{BB}}\\
+\color{green}{\mathtt{BB}}\quad\color{green}{\mathtt{BB}}\\
+\color{green}{\mathtt{BBBBBBBB}}
+\end{array}
+&
+\begin{array}{c}
+\color{blue}{\mathtt{MM}}\quad\color{blue}{\mathtt{MM}}\\
+\color{blue}{\mathtt{MMM}}\quad\color{blue}{\mathtt{MMM}}\\
+\color{blue}{\mathtt{MMMM}}\quad\color{blue}{\mathtt{MMMM}}\\
+\color{blue}{\mathtt{MM}}\quad\color{blue}{\mathtt{MMM}}\quad\color{blue}{\mathtt{MM}}\\
+\color{blue}{\mathtt{MM}}\quad\color{blue}{\mathtt{M}}\quad\color{blue}{\mathtt{MM}}\\
+\color{blue}{\mathtt{MM}}\quad\color{blue}{\mathtt{MM}}\\
+\color{blue}{\mathtt{MM}}\quad\color{blue}{\mathtt{MM}}
+\end{array}
 \end{array}
 &
 {\color{gray}{\mathtt{Th}}\overset{\color{red}{\bullet}}{\color{gray}{\imath}}\color{gray}{\mathtt{nkPad}}}
