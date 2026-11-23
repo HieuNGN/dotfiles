@@ -1,8 +1,9 @@
 # ThinkPad // dotfiles
 
 <p align="center">
-  <img alt="IBM blue" src="https://img.shields.io/badge/IBM-1F70C1?style=flat-square&logo=ibm&logoColor=white">
-  <img alt="ThinkPad red" src="https://img.shields.io/badge/THINKPAD-E2231A?style=flat-square&logo=lenovo&logoColor=white">
+  <img alt="IBM ASCII art in red, green, and blue beside a grey ThinkPad wordmark with a red dot over the i" src="assets/brand.svg" width="760">
+</p>
+<p align="center">
   <img alt="Zsh" src="https://img.shields.io/badge/SHELL-Zsh-161616?style=flat-square">
 </p>
 
