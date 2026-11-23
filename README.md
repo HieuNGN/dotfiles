@@ -1,8 +1,22 @@
 # ThinkPad // dotfiles
 
-<p align="center">
-  <img alt="IBM ASCII art in red, green, and blue beside a grey ThinkPad wordmark with a red dot over the i" src="assets/brand.svg" width="760">
-</p>
+$$
+\Large
+\begin{array}{c@{\qquad}c}
+\begin{array}{c@{\quad}c@{\quad}c}
+\color{red}{\mathtt{IIIIIII}} & \color{green}{\mathtt{BBBBBBBB}} & \color{blue}{\mathtt{MM\phantom{MMMMM}MM}}\\
+\color{red}{\phantom{II}\mathtt{III}\phantom{II}} & \color{green}{\mathtt{BB\phantom{BBBB}BB}} & \color{blue}{\mathtt{MMM\phantom{MMM}MMM}}\\
+\color{red}{\phantom{II}\mathtt{III}\phantom{II}} & \color{green}{\mathtt{BB\phantom{BBBB}BB}} & \color{blue}{\mathtt{MMMM\phantom{M}MMMM}}\\
+\color{red}{\phantom{II}\mathtt{III}\phantom{II}} & \color{green}{\mathtt{BBBBBBBB}} & \color{blue}{\mathtt{MM\phantom{M}MMM\phantom{M}MM}}\\
+\color{red}{\phantom{II}\mathtt{III}\phantom{II}} & \color{green}{\mathtt{BB\phantom{BBBB}BB}} & \color{blue}{\mathtt{MM\phantom{MM}M\phantom{MM}MM}}\\
+\color{red}{\phantom{II}\mathtt{III}\phantom{II}} & \color{green}{\mathtt{BB\phantom{BBBB}BB}} & \color{blue}{\mathtt{MM\phantom{MMMMM}MM}}\\
+\color{red}{\mathtt{IIIIIII}} & \color{green}{\mathtt{BBBBBBBB}} & \color{blue}{\mathtt{MM\phantom{MMMMM}MM}}
+\end{array}
+&
+{\color{gray}{\mathtt{Th}}\overset{\color{red}{\bullet}}{\color{gray}{\imath}}\color{gray}{\mathtt{nkPad}}}
+\end{array}
+$$
+
 <p align="center">
   <img alt="Zsh" src="https://img.shields.io/badge/SHELL-Zsh-161616?style=flat-square">
 </p>
