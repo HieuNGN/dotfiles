@@ -1,8 +1,16 @@
-# dotfiles
+# ThinkPad // dotfiles
 
-Zsh and other quality-of-life shell configs, managed as symlinks.
+<p align="center">
+  <img alt="IBM blue" src="https://img.shields.io/badge/IBM-1F70C1?style=flat-square&logo=ibm&logoColor=white">
+  <img alt="ThinkPad red" src="https://img.shields.io/badge/THINKPAD-E2231A?style=flat-square&logo=lenovo&logoColor=white">
+  <img alt="Zsh" src="https://img.shields.io/badge/SHELL-Zsh-161616?style=flat-square">
+</p>
 
-## Layout
+A dependable shell setup with a little ThinkPad DNA: practical, configurable,
+and ready for the next session. Zsh and quality-of-life tools are managed as
+symlinks, keeping the setup easy to inspect and repeat.
+
+## System Layout
 
 | File                      | Purpose                                              |
 | ------------------------- | ---------------------------------------------------- |
@@ -18,10 +26,11 @@ Zsh and other quality-of-life shell configs, managed as symlinks.
 | `zshenv.zsh`              | ZDOTDIR environment (XDG, MANPAGER, STARSHIP_CONFIG) |
 | `hosts.local.zsh.example` | Template for machine-specific host aliases           |
 
-## Install / sync flow
+## Provisioning
 
-The installer symlinks the repo files into `$ZDOTDIR` (`~/.config/zsh`) and
-`~/.zshenv` into `$HOME`. It is idempotent — safe to re-run.
+The installer links the repo files into `$ZDOTDIR` (`~/.config/zsh`) and
+`~/.zshenv` into `$HOME`. It is idempotent: safe to run again whenever the
+configuration changes.
 
 ```sh
 cd ~/projs/dotfiles
@@ -32,16 +41,17 @@ exec zsh
 
 > `install.sh` skips the `chsh` prompt when run non-interactively.
 
-## Machine-specific host aliases (`hosts.local.zsh`)
+## Local Hardware Notes
 
-Hosts and lab aliases (ssh targets, Wake-on-LAN, tailscale toggles) are **not**
-committed — they contain per-machine IPs and hostnames.
+Hosts and lab aliases (ssh targets, Wake-on-LAN, tailscale toggles) are
+machine-specific and **not committed**. They contain per-machine IPs and
+hostnames.
 
-- Copy the template and edit it:
+Copy the template and edit it:
 
-  ```sh
-  cp ~/.config/zsh/hosts.local.zsh.example ~/.config/zsh/hosts.local.zsh
-  ```
+```sh
+cp ~/.config/zsh/hosts.local.zsh.example ~/.config/zsh/hosts.local.zsh
+```
 
-- `~/.config/zsh/hosts.local.zsh` is sourced automatically by `.zshrc` when it
-  exists, and is gitignored. Never commit real IPs or hostnames.
+`~/.config/zsh/hosts.local.zsh` is sourced automatically by `.zshrc` when it
+exists, and is gitignored. Keep real IPs and hostnames out of version control.
